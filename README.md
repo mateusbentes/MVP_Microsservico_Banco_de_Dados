@@ -47,9 +47,21 @@ Em modo de desenvolvimento é recomendado executar utilizando o parâmetro reloa
 ```
 (myenv)$ flask run --host 0.0.0.0 --port 5001 --reload
 ```
+
 ---
-## Como executar em docker
+## Como executar através do Docker
+
+Certifique-se de ter o [Docker](https://docs.docker.com/engine/install/) instalado e em execução em sua máquina.
+
+Navegue até o diretório que contém o Dockerfile e o requirements.txt no terminal.
+Execute **como administrador** o seguinte comando para construir a imagem Docker:
 
 ```
-$ 
+$ docker build -t microsservico-db  .
+```
+
+Uma vez criada a imagem, para executar o container basta executar, **como administrador**, seguinte o comando:
+
+```
+$ docker run --network="host" microsservico-db
 ```
