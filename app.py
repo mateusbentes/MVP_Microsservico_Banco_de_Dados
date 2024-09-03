@@ -50,11 +50,13 @@ deletar_tag = Tag(name="Deletar nota", description="Apagar de nota no bloco")
     # """Redireciona para /openapi, tela que permite a escolha do estilo de documentação."""
     # return redirect('/openapi')
 
+# Método GET
 @app.get('/', methods=['GET'] , tags=[tudo_tag])
 def obter_todas_notas():
     """Função que obtem todas as notas no banco de dados"""
     return jsonify({'Notas': [nota.json() for nota in Nota.query.all()]}) # Retorna a busca te todas as notas
-    
+
+# Método POST
 @app.post('/', methods=['POST'] , tags=[adicao_tag])
 def adicao_nota():
     """Função para adicionar nota no banco de dados usando titulo e texto como parametros"""
@@ -64,6 +66,7 @@ def adicao_nota():
     db.session.commit() # Fazer o commit das mudanças no banco de dados
     return jsonify(nova_nota.json()) # Retorna a nova nota
 
+# Método PUT
 @app.put('/', methods=['PUT'] , tags=[atualizacao_tag])
 def edicao_nota():
     """Função para atualizar os detalhes da nota usando o id, titulo e descrição como parametros"""
@@ -75,6 +78,7 @@ def edicao_nota():
         db.session.commit() # Faz o commit das mudanças no banco de dados
         return jsonify(nota_a_atualizar.json())
 
+# Método DELETE
 @app.delete('/', methods=['DELETE'] , tags=[deletar_tag])
 def deletar_nota():
     """Função para deletar a nota do banco de dados usando o id da nota como o parametro"""
